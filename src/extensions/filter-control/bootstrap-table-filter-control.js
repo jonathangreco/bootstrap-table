@@ -221,7 +221,7 @@
                     addOptionToSelectControl(selectControl, uniqueValues[key], key);
                 }
 
-                sortSelectControl(selectControl);
+                //sortSelectControl(selectControl);
 
                 if (that.options.hideUnusedSelectOptions) {
                     hideUnusedSelectOptions(selectControl, uniqueValues);
@@ -339,7 +339,7 @@
                 if ($.inArray(event.keyCode, [37, 38, 39, 40]) > -1) {
                     return;
                 }
-                
+
                 clearTimeout(timeoutId);
                 timeoutId = setTimeout(function () {
                     that.onColumnSearch(event);
@@ -510,19 +510,7 @@
             //Make sure that the internal variables are set correctly
             this.options.valuesFilterControl = [];
 
-            this.$el.on('reset-view.bs.table', function () {
-                //Create controls on $tableHeader if the height is set
-                if (!that.options.height) {
-                    return;
-                }
-
-                //Avoid recreate the controls
-                if (that.$tableHeader.find('select').length > 0 || that.$tableHeader.find('input').length > 0) {
-                    return;
-                }
-
-                createControls(that, that.$tableHeader);
-            }).on('post-header.bs.table', function () {
+            this.$el.on('post-header.bs.table', function () {
                 setValues(that);
             }).on('post-body.bs.table', function () {
                 if (that.options.height) {
